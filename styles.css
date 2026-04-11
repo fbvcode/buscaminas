@@ -1,0 +1,52 @@
+.center, .mensajes {
+    clear: both;
+    width: 60%;
+    margin: auto;
+    padding: 10px;
+}
+
+.mensajes {
+    text-align: center;
+}
+.titulo {
+    margin: auto;
+    text-align: center;
+}
+
+
+.tablerojuego {
+	border-style: solid;
+	border-width: thin;
+    margin: auto;
+}
+.tablerojuego td {
+	width: 15px;
+	height:15px;
+	margin: 0px;
+	padding: 0px;
+    	border-style: solid;
+	border-width: thin;
+}
+
+.selec {
+    background-color: black;
+}
+
+.mina {
+    background-color: red;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#botonPintarDiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/*añadirle a #mensaje un height fijo y un overflow-y: scroll;*/
+

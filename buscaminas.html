@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <title>Buscaminas en Javascript</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Tarea de DIW 6" />
+    <meta name="keywords" content="" />
+
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="script.js"></script>
+    <script src="funciones.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="titulo">
+          <h1>Buscaminas en Javascript</h1>
+          <h2>Tarea 6 Desarrollo Web en Entorno Cliente</h2>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row">
+        <div class="center">
+          <p class="lead">
+            En primer lugar debes generar el tablero indicando ancho y alto. A
+            continuación trata de buscar la mina haciendo click sobre cualquier
+            casilla. Los intentos irán decreciendo. Suerte!!!!
+          </p>
+          <form role="form">
+            <p>Dimensiones del tablero:</p>
+            <div class="col-xs-3">
+              <label for="ancho">Ancho:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="ancho"
+                placeholder="Introduce el ancho"
+              />
+            </div>
+            <div class="col-xs-3">
+              <label for="alto">Alto:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="alto"
+                placeholder="Introduce el alto"
+              />
+            </div>
+            <div class="col-xs-3">
+              <label for="intentos">Intentos restantes:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="intentos"
+                readonly
+              />
+            </div>
+            <div class="col-xs-3">
+              <label for="minas">Minas encontradas:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="minas"
+                value="0"
+                readonly
+              />
+            </div>
+            <div class="col-xs-12" id="botonPintarDiv">
+              <button type="button" class="btn btn-default" id="pintar">
+                Pintar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="alert alert-info mensajes" id="mensaje">
+        <strong id="mensajetexto"></strong>
+      </div>
+      <div class="center">
+        <div id="tablero" class="tablero"></div>
+      </div>
+    </div>
+    <footer>Fátima Brígido Ventura</footer>
+    <script src="buscaminas.js"></script>
+  </body>
+</html>
