@@ -7,6 +7,12 @@
 
 .mensajes {
     text-align: center;
+
+    max-height: 150px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    
 }
 .titulo {
     margin: auto;
@@ -20,19 +26,23 @@
     margin: auto;
 }
 .tablerojuego td {
-	width: 15px;
-	height:15px;
+	width: 20px;
+	height:20px;
 	margin: 0px;
 	padding: 0px;
     	border-style: solid;
 	border-width: thin;
 }
 
-.selec {
+.tablerojuego td:hover{
+    background-color: antiquewhite;
+}
+
+.selec, #selec {
     background-color: black;
 }
 
-.mina {
+.mina, #mina {
     background-color: red;
 }
 
@@ -46,6 +56,7 @@ footer {
     justify-content: center;
     margin-top: 20px;
     margin-bottom: 20px;
+    justify-content: space-evenly;
 }
 
 /*añadirle a #mensaje un height fijo y un overflow-y: scroll;*/

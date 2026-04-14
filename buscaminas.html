@@ -19,8 +19,8 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script src="script.js"></script>
-    <script src="funciones.js"></script>
+    <!--<script src="script.js"></script>
+    <script src="funciones.js"></script> (Estos scripts ya estaban en el html, los comento porque siempre me dan error en consola y me generan ruido visual :) )-->
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
@@ -70,15 +70,17 @@
             </div>
             <div class="col-xs-3">
               <label for="minas">Minas encontradas:</label>
+              <!-- He cambiado este input a tipo text para mostrar las minas encontradas en 
+               formato ej: 2/3 -->
               <input
-                type="number"
+                type="text" 
                 class="form-control"
                 id="minas"
                 value="0"
                 readonly
               />
             </div>
-            <div class="col-xs-12" id="botonPintarDiv">
+            <div class="col-xs-12 divBotones" id="botonPintarDiv">
               <button type="button" class="btn btn-default" id="pintar">
                 Pintar
               </button>
