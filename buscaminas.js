@@ -5,6 +5,9 @@ let minasRestantes = 0;
 let minasEncontradas = 0;
 let intentosRedondeado;
 
+  //Interruptor para deciodir si mostrar u ocultar las minas
+  let minasVisibles = false;
+
 //Los inputs en variables para ir actualizando su contenido
 let inputIntentosRestantes = document.getElementById("intentos");
 let inputMinasEncontradas = document.getElementById("minas");
@@ -20,12 +23,14 @@ botonPintar.addEventListener("click", function () {
   let ancho = parseInt(inputAncho.value);
   let alto = parseInt(inputAlto.value);
 
-        let minasVisibles = false;
+  // Llamamos a la función para pintar el tablero, pasándole el alto y el ancho que el usuario ha introducido
+  let exito = pintarTablero(alto, ancho);
+
+  if (!exito) {
+    return;
+  }
 
   celdasTotales = ancho * alto;
-
-  // Llamamos a la función para pintar el tablero, pasándole el alto y el ancho que el usuario ha introducido
-  pintarTablero(alto, ancho);
 
   //Lamamos a la función para determinar los intentos que tiene el jugador y colocarlo en su input
   determinarIntentos();
@@ -43,6 +48,7 @@ function pintarTablero(filas, columnas) {
     alert(
       "Uno (o ambos) de los valores no ha sido introducido/s correctamente.",
     );
+    return false;
   } else if (filas < 2 || columnas < 2) {
     alert(
       "Has introducido un tamaño de " +
@@ -53,6 +59,7 @@ function pintarTablero(filas, columnas) {
         "\n" +
         "El tamaño mínimo del tablero es de 2x2",
     );
+    return false;
   } else {
     tamanoValido = true;
   }
@@ -92,6 +99,8 @@ function pintarTablero(filas, columnas) {
     }
     // Ponemos la tabla dentro del contenedor del tablero
     contenedorTablero.appendChild(tabla);
+
+    return true;
   }
 }
 
@@ -111,16 +120,26 @@ function determinarMinas() {
 
   while (!minasValidas) {
     //Pedimos el numero de minas al usuario y lo convertimos directamente a número y también de paso lo guardamos en una variable
-    minasTotal = parseInt(
-      prompt(
-        "Antes de comenzar, introduce el número de minas que quieres en el tablero.\n" +
-          "En este caso debe estar entre 1 y " +
-          (celdasTotales - 1) +
-          " (ambos incluidos).\nIntentos: " +
-          intentosRedondeado +
-          ".",
-      ),
+    let lectura = prompt(
+      "Antes de comenzar, introduce el número de minas que quieres en el tablero.\n" +
+        "En este caso debe estar entre 1 y " +
+        (celdasTotales - 1) +
+        " (ambos incluidos).\nIntentos: " +
+        intentosRedondeado +
+        ".",
     );
+    //Si el usuario cancela en el prompt = null
+    if (lectura === null) {
+      alert("Juego cancelado...");
+      return;
+    }
+    minasTotal = parseInt(lectura); //Convertimos a número
+
+    //Si el usuario deja el campo en blanco o mete algo que no sea un número
+    if (isNaN(minasTotal)) {
+      alert("Has introducido un número no válido, vuelve a intentarlo.");
+      continue; //Volvemos al principio del while
+    }
 
     minasRestantes = minasTotal;
 
@@ -275,7 +294,7 @@ function jugar() {
     console.log("minas escondidas: ", minasTotal);
     console.log(posicionesMinas);
     //Creamos un bucle que repartirá tantas minas como haya determinado el ususario
-    while (posicionesMinas.length < minasRestantes) {
+    while (posicionesMinas.length < minasTotal) {
       let numeroAzar = Math.floor(Math.random() * celdasTotales);
       if (!posicionesMinas.includes(numeroAzar)) {
         posicionesMinas.push(numeroAzar);
@@ -283,12 +302,15 @@ function jugar() {
         continue;
       }
     }
+
+    //Reseteamos valores para empezar el juego limpio
+    minasRestantes = minasTotal;
+    minasEncontradas = 0;
+    
     //Sólo mostramos el botón si no existe previamente
     if (!document.querySelector("#mostrarMinas")) {
       crearBotonMostrarMinas();
     }
-//Interruptor para deciodir si mostrar u ocultar las minas
-          let minasVisibles = false;
 
     //Función para crear el boton que reparte las minas
     function crearBotonMostrarMinas() {
